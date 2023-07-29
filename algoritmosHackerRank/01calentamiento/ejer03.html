@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            margin: 20px;
+            border-spacing: 0;
+            border-collapse: collapse;
+            width: 100px;
+        }
+
+        td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 5px;
+        }
+
+        td:hover {
+            background-color: tomato;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table>
+        <tbody>
+        </tbody>
+    </table>
+    <div class="numbers"></div>
+    <div class="resultado">Resultado: <span>12</span></div>
+
+    <script>
+        /**Dada una matriz cuadrada, calcule la diferencia absoluta entre las sumas de sus diagonales. */
+
+        let matriz = [[1, 2, 5], [3, 2, 1], [7, 1, 5]];
+        let table = document.querySelector('table');
+        let tbody = document.querySelector('table tbody');
+
+        function crearTabla(mat) {
+            let rowFragment = new DocumentFragment();
+
+            for (let i = 0; i < mat.length; i++) {
+                let columFragment = new DocumentFragment();
+
+                for (let j = 0; j < mat[i].length; j++) {
+                    let columns = document.createElement('td');
+                    columFragment.append(columns);
+                }
+
+                let rows = document.createElement('tr');
+                rows.append(columFragment);
+                let clon = rows.cloneNode(true)
+                // console.log(clon);
+                rowFragment.append(clon);
+                // console.log(rows);
+            }
+
+            tbody.append(rowFragment);
+            table.prepend(tbody)
+            document.body.prepend(table);
+        }
+
+        function imprimirMat(mat) {
+            let fil = table.rows;
+
+            for (let i = 0; i < mat.length; i++) {
+
+                for (let j = 0; j < mat[i].length; j++) {
+                    fil[i].cells[j].innerHTML = mat[i][j];
+                }
+
+            }
+        }
+        crearTabla(matriz);
+        imprimirMat(matriz);
+
+        function diagonalDifference(arr) {
+            let sDiag1 = 0;
+            let sDiag2 = 0;
+            let a = arr[0].length - 1;
+            for (let i = 0; i < arr.length; i++, a--) {
+
+                for (let j = 0; j < arr[i].length; j++) {
+                    if (i === j) {
+                        sDiag1 += arr[i][j];
+                    }
+                }
+                sDiag2 += arr[i][a];
+
+            }
+            let numbers = document.querySelector(".numbers");
+            numbers.innerHTML = `numeros: ${sDiag1} + ${sDiag2}`;
+            return Math.abs(sDiag1 - sDiag2);
+        }
+
+        const res = document.querySelector('.resultado>span');
+
+        res.innerHTML = diagonalDifference(matriz);
+    </script>
+</body>
+
+</html>
