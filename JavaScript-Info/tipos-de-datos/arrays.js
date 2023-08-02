@@ -1,15 +1,19 @@
 //metodos de arrays
 
-let arr = ["Yo", "estudio", "JavaScript"];
+let arr = ["Yo", "estudio", "JavaScript", "ahora", "mismo", "JavaScript"];
 
-arr.splice(1, 1); // desde el índice 1, remover 1 elemento
-// arr.splice(start[, deleteCount, elem1, ..., elemN])
+//devuelven un nuevo array
 
-console.log(arr); // ["Yo", "JavaScript"]
+console.log(arr.slice(0, 1));
+console.log(arr.filter(el => el === "JavaScript"));
+console.log(arr.map(el => el + 2));
 
-let arr2 = ["Yo", "estudio", "JavaScript", "ahora", "mismo"];
+let arr2 = [1, 2, 3];
+let arr3 = [4, 5, 6]
+console.log(arr.concat(arr2,arr3));
 
-// remueve los primeros 3 elementos y los reemplaza con otros
-arr2.splice(0, 3, "a", "bailar");
 
-console.log(arr2); // ahora ["a", "bailar", "ahora", "mismo"]
+
+//mutan el array original
+arr.splice(0, 3, "a", "bailar")
+console.log(arr);
