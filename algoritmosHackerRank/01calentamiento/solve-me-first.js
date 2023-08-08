@@ -1,11 +1,9 @@
 
 
 const solveMeFirst = (a, b) => {
-    function todosEnRango(valores, rangoMin, rangoMax) {
-        return valores.every(numero => numero >= rangoMin && numero <= rangoMax);
+    if ((a >= 1 && a <= 1000) && (b >= 1 && b <= 1000)){
+        return a+b;
     }
-
-    if (!todosEnRango([a, b], 1, 1000)) return
-    return a + b;
+    return
 }
 console.log(solveMeFirst(3, 7));
