@@ -20,11 +20,12 @@ function migratoryBirdsGPT(arr) {
     arr.forEach(birdType => {
         birdCounts[birdType]++;
     });
+    console.log(birdCounts);
 
     const maxCount = Math.max(...birdCounts);
     const mostCommonBirdType = birdCounts.indexOf(maxCount);
 
-    return mostCommonBirdType + 1;
+    return mostCommonBirdType;
 }
 
 console.log(migratoryBirdsGPT([1, 4, 4, 4, 5, 3]));
