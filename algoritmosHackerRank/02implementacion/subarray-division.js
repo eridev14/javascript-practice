@@ -5,7 +5,7 @@ function birthday(s, d, m) {
     if (!(1 <= m <= 12)) return
 
     let cont = 0;
-    for (let i = 0; i < s.length - m + 1; i++) {
+    for (let i = 0; i < s.length - m; i++) {
         let el = 0;
         for (let j = 0; j < m; j++) {
             el += s[i + j];
