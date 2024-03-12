@@ -1,71 +1,43 @@
 function queensAttack(n, k, r_q, c_q, obstacles) {
     const direccions = [
-        [1, 1], [1, 0], [1, -1], [0, 1],
-        [-1, -1], [-1, 0], [-1, 1], [1, 0]
-    ]
+        [1, 0], [0, 1], [-1, 0], [0, -1],
+        [1, 1], [1, -1], [-1, 1], [-1, -1]
+    ];
 
-    
+    let count = 0;
+
+    for (const dir of direccions) {
+        let posR = r_q;
+        let posC = c_q;
+
+        w: while (true) {
+            let [a, b] = dir;
+            posR += a;
+            posC += b;
+
+            if ((posR <= 0 || posR > n) || (posC <= 0 || posC > n)) {
+                break;
+            }
+
+
+            for (let i = 1; i <= k; i++) {
+                let [x, y] = obstacles[i - 1];
+                if (posR === x && posC === y) {
+                    break w;
+                }
+            }
+            console.log(count);
+
+            count++;
+
+        }
+
+    }
+
+    return count;
+
 }
 
-console.log(queensAttack(5, 5, 4, 4, [[1, 2], [3, 4], [5, 4]]));
-
-
-// function queensAttack(n, k, r_q, c_q, obstacles) {
-//     // Write your code here
-
-//     const direccions = [
-//         [1, 1], [1, 0], [1, -1], [0, 1],
-//         [-1, -1], [-1, 0], [-1, 1], [1, 0]
-//     ]
-
-//     let count = 0;
-//     let chess = Array.from({ length: n }, () => Array.from({ length: n }).fill('*'))
-//     drawTable(chess, n, k, r_q, c_q, 'R')
-
-//     for (const obs of obstacles) {
-//         let [f, c] = obs;
-//         drawTable(chess, n, k, f, c, "X")
-//     }
-
-
-
-//     showTable(chess);
-
-//     let bool = true;
-
-//     function PosQueen() {
-//         this.f = r_q - 1;
-//         this.c = c_q - 1;
-//         this.done = false;
-//     }
-
-//     let matSec1 = new PosQueen();
-//     console.log(matSec1);
-
-//     while (matSec1.f !== null) {
-//         let fil = matSec1.c + 1
-//         let col = matSec1.f - 1
-//     }
-
-//     return count;
-// }
-
-// function drawTable(chess, n, k, r, c, simbol) {
-//     for (let i = 0; i < n; i++) {
-//         let fil = n - i;
-//         for (let j = 0; j < n; j++) {
-//             let col = j + 1;
-//             if (fil === r && col === c) {
-//                 chess[i][j] = simbol;
-//             }
-//         }
-//     }
-// }
-
-// function showTable(chess) {
-//     for (const item of chess) {
-//         console.log(item.join(' '));
-//     }
-// }
+console.log(queensAttack(5, 3, 4, 3, [[5, 5], [4, 2], [2, 3]]));
 
 
