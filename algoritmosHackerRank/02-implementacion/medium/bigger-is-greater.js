@@ -1,40 +1,35 @@
 function biggerIsGreater(w) {
-    let newArr = w.split('');
-    if (nextPermutation(newArr)) {
-        let neww = newArr.join('');
-        console.log(neww);
-    }
-}
+    w = w.split(""); // Convertir la cadena en un arreglo de caracteres
 
-function nextPermutation(array) {
-    // Encuentra el índice más grande i tal que array[i] < array[i + 1]
-    let i = array.length - 2;
-    while (i >= 0 && array[i] >= array[i + 1]) {
+    // Encontrar el índice del primer carácter que no sigue la secuencia descendente
+    let i = w.length - 2;
+    while (i >= 0 && w[i] >= w[i + 1]) {
         i--;
     }
 
-    // Si no hay tal índice, la permutación es la última posible
-    if (i === -1) return false;
+    // Si i es -1, significa que la cadena está en orden descendente y no hay permutaciones más grandes posibles
+    if (i == -1) {
+        return "no answer";
+    }
 
-    // Encuentra el índice más grande j tal que array[j] > array[i]
-    let j = array.length - 1;
-    while (array[j] <= array[i]) {
+    // Encontrar el índice del siguiente carácter más grande que el carácter en la posición i
+    let j = w.length - 1;
+    while (w[j] <= w[i]) {
         j--;
     }
 
-    // Intercambia array[i] y array[j]
-    [array[i], array[j]] = [array[j], array[i]];
+    // Intercambiar los caracteres en las posiciones i y j
+    [w[i], w[j]] = [w[j], w[i]];
 
-    // Invierte la porción de array después de i
-    let left = i + 1;
-    let right = array.length - 1;
-    while (left < right) {
-        [array[left], array[right]] = [array[right], array[left]];
-        left++;
-        right--;
-    }
+    console.log(w);
 
-    return true;
+    // Revertir la parte de la cadena después de la posición i
+    w = w.slice(0, i + 1).concat(w.slice(i + 1).reverse());
+
+    // Unir el arreglo de caracteres para formar la cadena final
+    return w.join("");
 }
 
-console.log(biggerIsGreater("abcd"));
+// Ejemplo de uso:
+let word = "dkhc";
+console.log(biggerIsGreater(word));  // Salida esperada: "acbd"
