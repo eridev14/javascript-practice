@@ -26,12 +26,13 @@ function gridSearch(G, P) {
             console.log(P[i]);
 
             if (getG !== P[i]) {
-                return "NO"
+                found = false;
+                break;
             }
         }
     }
 
-    return "YES"
+    return found ? "YES" : "NO"
 }
 
 let val = [
@@ -63,7 +64,7 @@ console.log(gridSearch(val, valAdi));
 
 //chat 
 
-function gridSearch(G, P) {
+function gridSearchGPT(G, P) {
     const lenP = P.length;
     const lenPi = P[0].length;
 
@@ -106,4 +107,4 @@ let valoresAdicionales = [
     "99"
 ];
 
-console.log(gridSearch(valores, valoresAdicionales));
+console.log(gridSearchGPT(valores, valoresAdicionales));
