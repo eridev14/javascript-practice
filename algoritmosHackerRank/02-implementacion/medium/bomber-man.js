@@ -2,31 +2,31 @@
 //fin 
 
 function bomberMan(n, grid) {
-    let setp = new Set();
     for (let i = 0; i < grid.length; i++) {
-        let str = grid[i].split();
-        for (let j = 0; j < str.length; j++) {
-            console.log(grid[i][j]);
+        grid[i] = grid[i].split('');
+    }
+    let setp = new Set();
+
+    for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid[i].length; j++) {
             if (grid[i][j] === 'O') {
                 setp.add({ i, j });
-            } else {
-                grid[i][j] = 'O';
             }
+            grid[i][j] = 'O';
         }
     }
-    console.log(grid);
 
     setp.forEach(({ i, j }) => {
-        console.log(i, j);
-        if (i > grid.length && grid[i + 1][j]) grid[i + 1][j] = '.';
-        if (i < 0 && grid[i - 1][j]) grid[i - 1][j] = '.';
-        if (i > grid.length && grid[i][j + 1]) grid[i][j + 1] = '.';
-        if (grid[i][j - 1]) grid[i][j - 1] = '.';
+        if (grid[i + 1] && grid[i + 1][j]) grid[i + 1][j] = '.';
+        if (grid[i - 1] && grid[i - 1][j]) grid[i - 1][j] = '.';
+        if (grid[i] && grid[i][j + 1]) grid[i][j + 1] = '.';
+        if (grid[i] && grid[i][j - 1]) grid[i][j - 1] = '.';
+        grid[i][j] = '.';
     })
 
-    return grid;
+    return grid.map(val => val.join(''));
 }
 
-const grid = ['.......', '...O...', '....O..', '.......', 'OO.....', 'OO....'];
+const grid = ['.......', '...O...', '....O..', '.......', 'OO.....', 'OO.....']
 
 console.log(bomberMan(3, grid));
